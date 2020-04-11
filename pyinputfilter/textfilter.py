@@ -10,7 +10,7 @@ class TextFilter(pif.InputFilter):
 		self.maxlen = 0
 		self.alphabet = None
 
-	def execute(self, value) -> pif.ResultFilter:
+	def verify(self, value) -> pif.ResultFilter:
 		if type(value) != str:
 			return pif.ResultFilter(pif.RESULT_FILTER_INVALID_TYPE)
 
