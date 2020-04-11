@@ -7,15 +7,13 @@ class NumFilter(pif.InputFilter):
 		self.max = 256
 
 	def verify(self, value) -> pif.ResultFilter:
-		if value > self.min or value < self.max:
-			return pif.ResultFilter(pif.RESULT_FILTER_INVALID_LEN)
-
-		if self.alphabet is not None:
-			for v in value:
-				if v not in self.alphabet:
-					return pif.ResultFilter(pif.RESULT_FILTER_NOT_IN_APHABET)
+		if value < self.min or value > self.max:
+			return pif.ResultFilter(pif.RESULT_FILTER_NOT_IN_RANGE)
 
 		return pif.ResultFilter(pif.RESULT_FILTER_OK)
 
-	def convert(self, value) -> str:
-		return int(value)
+	def convert(self, value):
+		try:
+			return int(value)
+		except ValueError:
+			return pif.ResultFilter(pif.RESULT_FILTER_CANT_CONVERT)
