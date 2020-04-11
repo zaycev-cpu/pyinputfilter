@@ -23,3 +23,6 @@ class TextFilter(pif.InputFilter):
 					return pif.ResultFilter(pif.RESULT_FILTER_NOT_IN_APHABET)
 
 		return pif.ResultFilter(pif.RESULT_FILTER_OK)
+
+	def convert(self, value) -> str:
+		return str(value)
